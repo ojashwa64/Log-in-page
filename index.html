@@ -1,421 +1,218 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="t1.png">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        body {
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            background-image: url("2.webp");
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Main container */
-        #h1 {
-            position: relative;
-            text-align: center;
-            color: rgb(252, 252, 252);
-            font-size: 35px;
-            backdrop-filter: blur(10px);
-            border-radius: 10%;
-            width: 90%;
-            max-width: 400px;
-            height: auto;
-            min-height: 500px;
-            padding: 30px 20px;
-            margin: 20px;
-            box-sizing: border-box;
-            transform: translateX(100%);
-            opacity: 0;
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-
-        body.loaded #h1 {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        /* Logo/image styling */
-        #img {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            text-align: center;
-            opacity: 0;
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            width: 80px;
-            height: 80px;
-            z-index: 10;
-        }
-
-        body.loaded #img {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        #img img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-
-        /* Form elements */
-        #username, #password {
-            color: black;
-            text-align: center;
-            font-size: 16px;
-            width: 80%;
-            max-width: 300px;
-            height: 40px;
-            margin: 15px auto;
-            display: block;
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        #button {
-            margin: 20px auto;
-            display: block;
-            text-align: center;
-            color: rgb(255, 255, 255);
-            font-size: 16px;
-            width: 50%;
-            max-width: 150px;
-            height: 40px;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #d0d0d0 100%);
-            color: #222;
-            border-radius: 5px;
-            border: none;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-        }
-
-        #hr {
-            width: 80%;
-            max-width: 300px;
-            height: 1px;
-            margin: 30px auto;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #d0d0d0 100%);
-            border: none;
-        }
-
-        #p2 {
-            text-align: center;
-            color: rgb(255, 255, 255);
-            font-size: 20px;
-            width: 80%;
-            max-width: 300px;
-            margin: 0 auto;
-        }
-
-        /* Mobile responsiveness with landscape image fix */
-        @media (max-width: 768px) and (orientation: portrait) {
-            body {
-                background-size: auto 100%;
-            }
-        }
-
-        @media (max-width: 500px) {
-            #h1 {
-                font-size: 28px;
-                min-height: 450px;
-                padding: 25px 15px;
-            }
-            
-            #username, #password {
-                font-size: 14px;
-                height: 35px;
-            }
-            
-            #button {
-                font-size: 14px;
-                height: 35px;
-            }
-            
-            #p2 {
-                font-size: 16px;
-            }
-            
-            #img {
-                width: 60px;
-                height: 60px;
-                top: 8%;
-            }
-        }
-
-        @media (max-width: 350px) {
-            #h1 {
-                font-size: 24px;
-                min-height: 400px;
-                padding: 20px 10px;
-            }
-            
-            #p2 {
-                font-size: 14px;
-            }
-            
-            #img {
-                width: 50px;
-                height: 50px;
-            }
-        }
-
-        /* Special landscape adjustments */
-        @media (max-width: 768px) and (orientation: landscape) {
-            #h1 {
-                min-height: 400px;
-                padding: 20px 15px;
-                width: 80%;
-            }
-            
-            #img {
-                top: 15%;
-                width: 60px;
-                height: 60px;
-            }
-            
-            body {
-                background-size: 100% auto;
-            }
-        }
-    </style>
-    <title>Log In</title>
-</head>
-<body>
-    <div id="img"><img src="t1.png" alt="Logo"></div>
-    <div id="h1">
-         <h1>Log In</h1>
-         <input type="text" placeholder="Username" name="username" id="username" autocomplete="username">
-         <input type="password" placeholder="Password" name="password" id="password" autocomplete="password">
-         <button type="submit" id="button">Login Now!!</button>
-         <hr id="hr">
-         <p id="p2">Configure Your Dream With Us</p>
-    </div>
-
-    <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.body.classList.add('loaded');
-            }, 50);
-            
-            // Handle orientation changes
-            window.addEventListener('orientationchange', function() {
-                // Force redraw to handle background image properly
-                document.body.style.backgroundImage = 'none';
-                setTimeout(function() {
-                    document.body.style.backgroundImage = 'url("2.webp")';
-                }, 10);
-            });
-        });
-    </script>
-</body>
-</html> -->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="icon" href="t1.png">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         html {
+            background-image: url("2.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             height: 100%;
         }
-        
+
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            background: url("2.webp") no-repeat center center fixed;
-            background-size: cover;
             overflow-x: hidden;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        /* Main container - unchanged from your original */
-        #h1 {
-            position: fixed;
-            top: 50%;
-            left: 80%;
-            transform: translate(-50%, -50%) translateX(100%);
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             text-align: center;
-            color: rgb(252, 252, 252);
-            font-size: 35px; 
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
-            backdrop-filter: blur(10px); 
-            border-radius: 10%;
-            width: 400px;
-            height: 600px;
-            padding-bottom: 40px;
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            color: white;
+            transform: translateX(100%);
             opacity: 0;
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
         }
 
-        body.loaded #h1 {
-            transform: translate(-50%, -50%) translateX(0);
+        body.loaded .login-container {
+            transform: translateX(0);
             opacity: 1;
         }
 
-        /* Logo - unchanged from your original */
-        #img {
-            position: fixed;
-            top: 15%; 
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            text-align: center;
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: block;
             opacity: 0;
+            transform: scale(0.8);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        body.loaded #img {
+        body.loaded .logo {
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
+            transform: scale(1);
         }
 
-        /* Form elements - unchanged from your original */
-        #username {
-            position: fixed; 
-            color: black;           
-            top: 30%; 
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            font-size: 20px; 
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
-            width: 300px;
-            height: 30px;
+        h1 {
+            margin-bottom: 30px;
+            font-size: 28px;
         }
-        
-        #password {
-            top: 45%; 
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            position: fixed;
-            color: black;
-            font-size: 20px;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
-            width: 300px;
-            height: 30px;
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
         }
-        
-        #button {
-            position: fixed;
-            top: 55%; 
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: rgb(255, 255, 255);
-            font-size: 20px;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
-            width: 150px;
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: none;
+            border-radius: 30px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
             background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #d0d0d0 100%);
             color: #222;
-            border-radius: 0%;
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
             transform: translateY(-2px);
-        }
-        
-        #hr {
-            position: fixed;
-            top: 65%; 
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: rgb(255, 255, 255);
-            font-size: 20px;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
-            width: 300px;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #d0d0d0 100%);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
 
-        #p2 {
-            position: fixed;
-            top: 80%; 
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: rgb(255, 255, 255);
-            font-size: 30px; 
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;   
-            width: 300px;
+        button:active {
+            transform: translateY(0);
         }
 
-        /* ONLY MOBILE FIXES ADDED BELOW */
-        @media (max-width: 768px) {
-            /* Center the login panel on mobile */
-            #h1 {
-                left: 50%;
-                width: 90%;
-                max-width: 350px;
-                height: auto;
-                min-height: 500px;
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            margin: 30px 0;
+        }
+
+        .tagline {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 20px;
+                border-radius: 15px;
             }
             
-            /* Adjust form element sizes */
-            #username, #password {
-                width: 80%;
-                font-size: 16px;
-            }
-            
-            #button {
-                width: 40%;
-                font-size: 16px;
-            }
-            
-            #hr, #p2 {
-                width: 80%;
-            }
-            
-            #p2 {
+            h1 {
                 font-size: 24px;
+                margin-bottom: 20px;
             }
             
-            /* Ensure background covers whole screen */
-            body {
-                background: url("2.webp") no-repeat center center;
-                background-size: cover;
-                background-attachment: fixed;
+            input {
+                padding: 12px 12px 12px 40px;
+                font-size: 14px;
+            }
+            
+            button {
+                padding: 12px;
+                font-size: 14px;
+            }
+            
+            .tagline {
+                font-size: 16px;
+            }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 350px) {
+            .login-container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+            
+            input {
+                padding: 10px 10px 10px 35px;
             }
         }
     </style>
     <title>Log In</title>
 </head>
 <body>
-    <div id="img"><img src="t1.png" alt="Logo"></div>
-    <div id="h1">
-         <h1>Log In</h1>
-         <input type="text" placeholder="Username" name="username" id="username" autocomplete="username">
-         <input type="password" placeholder="Password" name="password" id="password" autocomplete="password">
-         <button type="submit" id="button">Login Now!!</button>
-         <hr id="hr">
-         <p id="p2">Configure Your Dream With Us</p>
+    <div class="login-container">
+        <img src="t1.png" alt="Logo" class="logo">
+        <h1>Log In</h1>
+        
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Username" name="username" id="username" autocomplete="username">
+        </div>
+        
+        <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" name="password" id="password" autocomplete="current-password">
+        </div>
+        
+        <button type="submit" id="button">Login Now</button>
+        
+        <hr>
+        
+        <p class="tagline">Configure Your Dream With Us</p>
     </div>
 
     <script>
+        // Add 'loaded' class to body after short delay to trigger animation
         window.addEventListener('load', function() {
             setTimeout(function() {
                 document.body.classList.add('loaded');
