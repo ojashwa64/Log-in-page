@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="twhite.png">
+    <style>
+        html {
+            background-image: url("2.webp");
+            background-size: cover;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #h1 {
+            position: fixed;
+            top: 50%;
+            left: 80%;
+            transform: translate(-50%, -50%) translateX(100%); /* Start off-screen */
+            text-align: center;
+            color: rgb(252, 252, 252);
+            font-size: 35px; 
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
+            backdrop-filter: blur(10px); 
+            border-radius: 10%;
+            width: 400px;
+            height: 600px;
+            padding-bottom: 40px;
+            transition: transform 0.5s ease-out;
+            opacity: 0; /* Start invisible */
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        /* Animation when page loads */
+        body.loaded #h1 {
+            transform: translate(-50%, -50%) translateX(0);
+            opacity: 1;
+        }
+
+        #username {
+            position: fixed; 
+            color: black;           
+            top: 30%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 20px; 
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
+            width: 300px;
+            height: 30px;
+        }
+        
+        #password {
+            top: 45%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            position: fixed;
+            color: black;
+            font-size: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
+            width: 300px;
+            height: 30px;
+        }
+        
+        #button {
+            position: fixed;
+            top: 55%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
+            width: 150px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #d0d0d0 100%);
+            color: #222;
+            border-radius: 0%;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        #hr {
+            position: fixed;
+            top: 65%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
+            width: 300px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #d0d0d0 100%);
+        }
+
+        #p2 {
+            position: fixed;
+            top: 80%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgb(255, 255, 255);
+            font-size: 30px; 
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;   
+            width: 300px;
+        }
+
+        /* ===== Updated Image Styling with Transition ===== */
+        #img {
+            position: fixed;
+            top: 15%; 
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8); /* Start slightly smaller */
+            text-align: center;
+            opacity: 0; /* Start invisible */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        /* Animation when page loads */
+        body.loaded #img {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1); /* Scale to normal size */
+        }
+    </style>
+    <title>Sign Up / Log In</title>
+</head>
+<body>
+    <div id="img"><img src="twhite.png" alt="Logo"></div>
+    <div id="h1">
+         <h1>Log In </h1>
+         <input type="text" class="form-control input-box" placeholder="Username" name="username" id="username" autocomplete="username">
+         <input type="password" class="form-control input-box" placeholder="Password" name="password" id="password" autocomplete="password">
+         <button class="btn btn-primary loginsubmit" type="submit" id="button">Login Now!!</button>
+         <hr id="hr">
+         <p id="p2">Configure Your Dream With Us</p>
+    </div>
+
+    <script>
+        // Add 'loaded' class to body after short delay to trigger animation
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.body.classList.add('loaded');
+            }, 50); // Small delay to ensure CSS is ready
+        });
+    </script>
+</body>
+</html>
