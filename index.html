@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -228,6 +228,198 @@
                     document.body.style.backgroundImage = 'url("2.webp")';
                 }, 10);
             });
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="t1.png">
+    <style>
+        html {
+            height: 100%;
+        }
+        
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background: url("2.webp") no-repeat center center fixed;
+            background-size: cover;
+            overflow-x: hidden;
+        }
+
+        /* Main container - unchanged from your original */
+        #h1 {
+            position: fixed;
+            top: 50%;
+            left: 80%;
+            transform: translate(-50%, -50%) translateX(100%);
+            text-align: center;
+            color: rgb(252, 252, 252);
+            font-size: 35px; 
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
+            backdrop-filter: blur(10px); 
+            border-radius: 10%;
+            width: 400px;
+            height: 600px;
+            padding-bottom: 40px;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            opacity: 0;
+        }
+
+        body.loaded #h1 {
+            transform: translate(-50%, -50%) translateX(0);
+            opacity: 1;
+        }
+
+        /* Logo - unchanged from your original */
+        #img {
+            position: fixed;
+            top: 15%; 
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        body.loaded #img {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Form elements - unchanged from your original */
+        #username {
+            position: fixed; 
+            color: black;           
+            top: 30%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 20px; 
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
+            width: 300px;
+            height: 30px;
+        }
+        
+        #password {
+            top: 45%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            position: fixed;
+            color: black;
+            font-size: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
+            width: 300px;
+            height: 30px;
+        }
+        
+        #button {
+            position: fixed;
+            top: 55%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
+            width: 150px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #d0d0d0 100%);
+            color: #222;
+            border-radius: 0%;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        #hr {
+            position: fixed;
+            top: 65%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;       
+            width: 300px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #d0d0d0 100%);
+        }
+
+        #p2 {
+            position: fixed;
+            top: 80%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgb(255, 255, 255);
+            font-size: 30px; 
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;   
+            width: 300px;
+        }
+
+        /* ONLY MOBILE FIXES ADDED BELOW */
+        @media (max-width: 768px) {
+            /* Center the login panel on mobile */
+            #h1 {
+                left: 50%;
+                width: 90%;
+                max-width: 350px;
+                height: auto;
+                min-height: 500px;
+            }
+            
+            /* Adjust form element sizes */
+            #username, #password {
+                width: 80%;
+                font-size: 16px;
+            }
+            
+            #button {
+                width: 40%;
+                font-size: 16px;
+            }
+            
+            #hr, #p2 {
+                width: 80%;
+            }
+            
+            #p2 {
+                font-size: 24px;
+            }
+            
+            /* Ensure background covers whole screen */
+            body {
+                background: url("2.webp") no-repeat center center;
+                background-size: cover;
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    <title>Log In</title>
+</head>
+<body>
+    <div id="img"><img src="t1.png" alt="Logo"></div>
+    <div id="h1">
+         <h1>Log In</h1>
+         <input type="text" placeholder="Username" name="username" id="username" autocomplete="username">
+         <input type="password" placeholder="Password" name="password" id="password" autocomplete="password">
+         <button type="submit" id="button">Login Now!!</button>
+         <hr id="hr">
+         <p id="p2">Configure Your Dream With Us</p>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.body.classList.add('loaded');
+            }, 50);
         });
     </script>
 </body>
