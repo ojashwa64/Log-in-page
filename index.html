@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="icon" href="t1.png">
     <style>
@@ -15,8 +17,9 @@
         html {
             background-image: url("2.webp");
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             background-repeat: no-repeat;
+            background-attachment: fixed;
             height: 100%;
         }
 
@@ -29,11 +32,13 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            background-color: rgba(0, 0, 0, 0.4); /* Fallback for image */
         }
 
         .login-container {
             background-color: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 30px;
             width: 100%;
@@ -44,6 +49,7 @@
             transform: translateX(100%);
             opacity: 0;
             transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         body.loaded .login-container {
@@ -52,8 +58,8 @@
         }
 
         .logo {
-            width: 200px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
             margin: 0 auto 20px;
             display: block;
             opacity: 0;
@@ -68,8 +74,9 @@
 
         h1 {
             margin-bottom: 20px;
-            margin-top: -20px;
+            margin-top: -10px;
             font-size: 28px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .input-group {
@@ -94,6 +101,7 @@
             color: white;
             font-size: 16px;
             transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         input::placeholder {
@@ -140,18 +148,33 @@
         .tagline {
             font-size: 18px;
             margin-top: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         /* Responsive adjustments */
+        @media (max-width: 768px) {
+            html {
+                background-size: auto 100%;
+                background-position: center center;
+            }
+        }
+
         @media (max-width: 480px) {
+            body {
+                padding: 15px;
+                align-items: flex-start;
+                padding-top: 30px;
+            }
+            
             .login-container {
-                padding: 20px;
+                padding: 25px 20px;
                 border-radius: 15px;
+                max-width: 100%;
             }
             
             h1 {
                 font-size: 24px;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             
             input {
@@ -169,14 +192,14 @@
             }
             
             .logo {
-                width: 60px;
-                height: 60px;
+                width: 80px;
+                height: 80px;
             }
         }
 
         @media (max-width: 350px) {
             .login-container {
-                padding: 15px;
+                padding: 20px 15px;
             }
             
             h1 {
@@ -185,6 +208,39 @@
             
             input {
                 padding: 10px 10px 10px 35px;
+            }
+            
+            .logo {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+        /* Orientation-specific adjustments */
+        @media screen and (orientation: landscape) and (max-width: 900px) {
+            body {
+                align-items: center;
+                padding: 10px;
+            }
+            
+            .login-container {
+                max-width: 350px;
+                padding: 20px;
+            }
+            
+            .logo {
+                width: 70px;
+                height: 70px;
+            }
+            
+            h1 {
+                font-size: 22px;
+                margin-top: 0;
+                margin-bottom: 15px;
+            }
+            
+            .tagline {
+                font-size: 16px;
             }
         }
     </style>
@@ -218,6 +274,14 @@
             setTimeout(function() {
                 document.body.classList.add('loaded');
             }, 50);
+        });
+        
+        // Handle orientation changes
+        window.addEventListener('orientationchange', function() {
+            // Force a repaint to ensure proper rendering
+            document.body.style.display = 'none';
+            document.body.offsetHeight; // Trigger reflow
+            document.body.style.display = 'flex';
         });
     </script>
 </body>
